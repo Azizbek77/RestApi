@@ -5,7 +5,7 @@ const env = {
     host: 'localhost',
     dialect: 'mysql',
     define: {
-        timestamps: false
+        timestamps: true
     },
     pool: {
         max: 5,

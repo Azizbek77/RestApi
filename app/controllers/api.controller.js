@@ -1,6 +1,7 @@
 const db = require('../config/db.config.js');
 const UserDetail = db.UserDetail;
 const sequelize = require('sequelize');
+
 exports.create = (req, res) => {
     const userId = req.body.user_id,
         typeR = req.body.type_r,
@@ -17,7 +18,7 @@ exports.create = (req, res) => {
             amount: amount,
             order_id: order_id,
             user_type: user_type,
-            created_at: new Date(),
+            
         }).then(userDetail => {
         res.send(userDetail);
     })
