@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize) => {
             phone: {
                 type: Sequelize.STRING,
             },
+            c_name: {
+                type:Sequelize.STRING,
+            },
             type: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
@@ -39,6 +42,10 @@ module.exports = (sequelize, Sequelize) => {
             user_type: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
+            },
+            comment: {
+                type: Sequelize.STRING,
+                allowNull:false,
             }
 
         }, {
