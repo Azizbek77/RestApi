@@ -70,9 +70,31 @@ exports.userTotalBonus = (req, res) =>{
 
 exports.userBonus = (req, res) => {
     const id = req.params.id;
+    UserDetail.findAll(
+        {
+            attributes: [
+                'created_at',
+                'type_r',
+                'amount',
+                'type',
+                'user_id',
+                'order_id',
+                'comment',
+            ],
+            where: {
+                user_id: id,
+                user_type: 2
+            }
+        }).then(userDetail => {
+        res.send(userDetail);
+    })
+};
+
+exports.userBonusList = (req, res) => {
+    const id = req.params.id;
     var arr = [];
-    db.sequelize.query("SELECT * FROM type",{type: sequelize.QueryTypes.SELECT}).then(userBonus =>{
-        arr.push(userBonus);
+    db.sequelize.query("SELECT * FROM type",{type: sequelize.QueryTypes.SELECT}).then(userBonusList =>{
+        arr.push(userBonusList);
     });
     UserDetail.findAll(
         {
@@ -94,6 +116,7 @@ exports.userBonus = (req, res) => {
         res.send(arr);
     })
 };
+
 exports.userBonusSolar = (req, res) => {
     const id = req.params.id;
     UserDetail.findAll(
