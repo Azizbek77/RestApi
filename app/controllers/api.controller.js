@@ -92,9 +92,9 @@ exports.userBonus = (req, res) => {
 
 exports.userBonusList = (req, res) => {
     const id = req.params.id;
-    var arr = [];
+    var arr = {};
     db.sequelize.query("SELECT * FROM type",{type: sequelize.QueryTypes.SELECT}).then(userBonusList =>{
-        arr.push(userBonusList);
+        arr["type"] = userBonusList;
     });
     UserDetail.findAll(
         {
@@ -112,7 +112,7 @@ exports.userBonusList = (req, res) => {
                 user_type: 2
             }
         }).then(userDetail => {
-        arr.push(userDetail);
+        arr["data"] = userDetail;
         res.send(arr);
     })
 };
