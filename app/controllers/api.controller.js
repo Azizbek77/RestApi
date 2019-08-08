@@ -58,6 +58,7 @@ exports.bonusSum = (req, res) => {
     });
 };
 exports.userTotalBonus = (req, res) =>{
+        
         const user_id = req.params.id;
         db.sequelize.query("SELECT SUM(CASE When type = 1 Then amount Else 0 End ) - SUM(CASE When type = 2 Then amount Else 0 End ) AS Total  FROM billinghistory  where user_id = :user_id ",{type: sequelize.QueryTypes.SELECT , replacements: { user_id : user_id }}).then(userTotalBonus =>{
         res.send(userTotalBonus);
@@ -69,6 +70,10 @@ exports.userTotalBonus = (req, res) =>{
 
 exports.userBonus = (req, res) => {
     const id = req.params.id;
+    var arr = [];
+    db.sequelize.query("SELECT * FROM type",{type: sequelize.QueryTypes.SELECT}).then(userBonus =>{
+        arr.push(userBonus);
+    });
     UserDetail.findAll(
         {
             attributes: [
@@ -85,7 +90,8 @@ exports.userBonus = (req, res) => {
                 user_type: 2
             }
         }).then(userDetail => {
-        res.send(userDetail);
+        arr.push(userDetail);
+        res.send(arr);
     })
 };
 exports.userBonusSolar = (req, res) => {
