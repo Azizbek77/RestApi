@@ -35,7 +35,7 @@ exports.bonusList = (req, res) => {
             'type_r',
             'type',
             'amount',
-            'order_id',
+            'order_id', 
             'user_type',
 
         ]
@@ -95,26 +95,26 @@ exports.userBonusList = (req, res) => {
     var arr = {};
     db.sequelize.query("SELECT * FROM type",{type: sequelize.QueryTypes.SELECT}).then(userBonusList =>{
         arr["type"] = userBonusList;
+            UserDetail.findAll(
+                {
+                    attributes: [
+                        'created_at',
+                        'type_r',
+                        'amount',
+                        'type',
+                        'user_id',
+                        'order_id',
+                        'comment',
+                    ],
+                    where: {
+                        user_id: id,
+                        user_type: 2
+                    }
+                }).then(userDetail => {
+                arr["data"] = userDetail;
+                res.send(arr);
+            })
     });
-    UserDetail.findAll(
-        {
-            attributes: [
-                'created_at',
-                'type_r',
-                'amount',
-                'type',
-                'user_id',
-                'order_id',
-                'comment',
-            ],
-            where: {
-                user_id: id,
-                user_type: 2
-            }
-        }).then(userDetail => {
-        arr["data"] = userDetail;
-        res.send(arr);
-    })
 };
 
 exports.userBonusSolar = (req, res) => {
