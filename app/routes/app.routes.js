@@ -17,4 +17,5 @@ module.exports = function (app) {
     /**апи для биллинга фронт **/
     app.get('/list', users.list);
     app.get('/courierDetail/:id', courierHistory.userDetail);
+    app.get('/getBalansByDate/:from_date/:to_date',courierHistory.getBalansByDate);
 };
