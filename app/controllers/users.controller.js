@@ -9,8 +9,6 @@ exports.list = (req, res) => {
             'phone'
         ]
     },).then(users => {
-
         res.send(users);
-
     });
 };

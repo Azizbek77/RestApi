@@ -30,5 +30,5 @@ exports.getBalansByDate = (req, res) => {
             " ",  { type: sequelize.QueryTypes.SELECT , replacements: { from:from+' 00:00:00' , to:to+' 23:59:59'}}).then(getBalansByDate => {
         res.send(getBalansByDate);
     });
-    
+
 };

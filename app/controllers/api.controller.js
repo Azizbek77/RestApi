@@ -2,6 +2,7 @@ const db = require('../config/db.config.js');
 const UserDetail = db.UserDetail;
 const constants = require('../../constants.js');
 const sequelize = require('sequelize');
+
 exports.create = (req, res) => {
     const userId = req.body.user_id,
         c_name = req.body.c_name,
@@ -40,9 +41,8 @@ exports.bonusList = (req, res) => {
             'type_r',
             'type',
             'amount',
-            'order_id', 
+            'order_id',
             'user_type',
-
         ]
     },).then(bonusDetail => {
 
@@ -67,18 +67,16 @@ exports.bonusSum = (req, res) => {
         res.send(bonusSum);
     });
 };
+
 exports.userTotalBonus = (req, res) =>{
-        
+
         const user_id = req.params.id;
         db.sequelize.query("SELECT SUM(CASE When type = 1 Then amount Else 0 End ) - SUM(CASE When type = 2 Then amount Else 0 End ) "+
             "AS Total  FROM billinghistory  where user_id = :user_id"+
             " ",{type: sequelize.QueryTypes.SELECT , replacements: { user_id : user_id }}).then(userTotalBonus =>{
         res.send(userTotalBonus);
-    });    
+    });
 };
-
-
-
 
 exports.userBonus = (req, res) => {
     const id = req.params.id;
