@@ -1,0 +1,20 @@
+{
+  "name": "express_pi",
+  "version": "1.0.0",
+  "description": "Api for app",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.2"
+  },
+  "devDependencies": {
+    "npm-audit": "0.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fozil Umarov",
+  "license": "MIT"
+}
